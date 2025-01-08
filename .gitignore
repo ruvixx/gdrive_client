@@ -1,0 +1,21 @@
+credentials.json
+token.json
+
+.env
+.venv
+venv/
+
+.DS_Store
+
+# IntelliJ IDE
+.idea
+
+# tmp
+/tmp
+
+# vscode
+.vscode
+
+.python-version
+
+__pycache__/
