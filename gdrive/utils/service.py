@@ -6,7 +6,10 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 
-SCOPES = ["https://www.googleapis.com/auth/drive"]
+SCOPES = [
+    'https://www.googleapis.com/auth/drive.readonly',
+    'https://www.googleapis.com/auth/spreadsheets'
+]
 
 
 def get_service(service_name=None, version=None):

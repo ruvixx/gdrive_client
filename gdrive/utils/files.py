@@ -44,3 +44,32 @@ def list_files(fields=None, page_size=20, q=None, max_results=100, folder_id=Non
         # page_token = results.get("nextPageToken")
         # if not page_token:
         #     break
+
+def update_sheet(file_id, values, range_name='Sheet1!A1', value_input_option='RAW'):
+    """
+    Updates values in a Google Sheets file.
+
+    Args:
+        file_id (str): The ID of the Google Sheets file to update
+        values (list): 2D array of values to write to the sheet
+        range_name (str, optional): A1 notation of range to update. Defaults to 'Sheet1!A1'
+        value_input_option (str, optional): How to interpret input data. 
+            Possible values: 'RAW' or 'USER_ENTERED'. Defaults to 'RAW'
+
+    Returns:
+        dict: The response from the API containing update details
+    """
+    service = get_service("sheets", "v4")
+    
+    body = {
+        'values': values
+    }
+    
+    result = service.spreadsheets().values().update(
+        spreadsheetId=file_id,
+        range=range_name,
+        valueInputOption=value_input_option,
+        body=body
+    ).execute()
+    
+    return result
